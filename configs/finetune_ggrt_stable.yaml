@@ -1,0 +1,77 @@
+### Model Config
+defaults:
+  - pixelsplat/encoder: epipolar
+  - pixelsplat/decoder: splatting_cuda
+
+### INPUT
+expname : finetune_dgaussian_stable_room
+rootdir : data/ibrnet/train
+render_stride : 2
+distributed : False
+enable_tensorboard : True
+enable_visdom : False
+seed : 3407
+pretrained : False
+local_rank : 0
+
+## dataset
+train_dataset : llff_test
+train_scenes : [room]
+dataset_weights : [1]
+eval_dataset : llff_test
+eval_scenes : [room]
+# eval_scenes : [trex, fern, flower, leaves, room, fortress, horns, orchids]
+
+num_source_views : 7
+workers : 16
+
+selection_rule : pose
+random_crop : False
+outlier_ratio : 0.2
+noise_level : 0.15
+testskip : 8
+
+no_load_opt: True
+no_load_scheduler: True
+
+### TRAINING
+n_iters: 5000
+N_rand : 500
+lrate_feature : 0.001
+lrate_mlp : 0.0005
+lrate_pose : 0.00002
+lrate_decay_factor : 0.5
+lrate_decay_steps : 2000
+lrate_decay_pose_steps : 2000
+coarse_only : True
+rectify_inplane_rotation: False
+coarse_feat_dim : 64 # original:32
+fine_feat_dim : 32 # original:128
+anti_alias_pooling : 1
+
+use_pred_pose: False
+use_depth_loss: False
+
+optimizer:
+  lr: 5e-5
+  warm_up_steps: 500
+### TESTING
+chunk_size : 2000
+
+### RENDERING
+N_importance : 0 #64
+N_samples : 64
+inv_uniform : True
+white_bkgd : False
+sample_mode : uniform
+center_ratio : 0.8
+feat_loss_scale : 1e1
+crop_size : 2 
+### CONSOLE AND TENSORBOARD
+n_validation : 1000
+n_tensorboard : 2
+n_checkpoint : 500
+visdom_port : 9000
+
+### evaluation options
+llffhold : 8

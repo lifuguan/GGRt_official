@@ -1,18 +1,6 @@
 # GGRt: Towards Pose-free Generalizable 3D Gaussian Splatting in Real-time
 [[Project Page](https://3d-aigc.github.io/GGRt/) | [arXiv](https://arxiv.org/pdf/2403.10147.pdf)] | [Model](https://drive.google.com/drive/folders/1Y-0YeTkoUQHGnuA_IZrFbcy8iwH9FE4J?usp=drive_link)
-
-> [**GGRt: Towards Pose-free Generalizable 3D Gaussian Splatting in Real-time**](https://arxiv.org/pdf/2403.10147.pdf),            
-
-**Official implementation of "GGRt: Towards Pose-free Generalizable 3D Gaussian Splatting in Real-time".** 
-
-
-## 🛠️ Pipeline
-<div align="center">
-  <img src="assets/framework.jpg"/>
-</div><br/>
-
-
-## Installation
+# Installation
 ```bash
 git clone https://github.com/dcharatan/diff-gaussian-rasterization-modified
 pip install -e ./diff-gaussian-rasterization-modified

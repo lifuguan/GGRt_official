@@ -1,0 +1,78 @@
+### Model Config
+defaults:
+  - pixelsplat/encoder: epipolar
+  - pixelsplat/decoder: splatting_cuda
+
+### INPUT
+expname : pretrain_llff
+rootdir : data/ibrnet/train
+render_stride : 2
+distributed : False
+enable_tensorboard : True
+enable_visdom : False
+seed : 3407
+pretrained : False
+local_rank : 0
+ckpt_path : model_zoo/generalized_llff_best.pth
+
+## dataset
+train_dataset : llff+ibrnet_collected
+train_scenes : []
+dataset_weights : [0.5, 0.5]
+eval_dataset : llff_test
+# eval_scenes : [room]
+eval_scenes : [trex, fern, flower, leaves, room, fortress, horns, orchids]
+
+num_source_views : 5
+workers : 8
+
+selection_rule : pose
+random_crop : False
+outlier_ratio : 0.2
+noise_level : 0.15
+testskip : 8
+
+no_load_opt: True
+no_load_scheduler: True
+
+### TRAINING
+n_iters: 6000
+N_rand : 500
+lrate_feature : 0.001
+lrate_mlp : 0.0005
+lrate_pose : 0.00002
+lrate_decay_factor : 0.5
+lrate_decay_steps : 50000
+lrate_decay_pose_steps : 50000
+coarse_only : True
+rectify_inplane_rotation: False
+coarse_feat_dim : 64 # original:32
+fine_feat_dim : 32 # original:128
+anti_alias_pooling : 1
+
+use_pred_pose: True
+use_depth_loss: True
+
+optimizer:
+  lr: 1.5e-4
+  warm_up_steps: 2000
+### TESTING
+chunk_size : 2000
+
+### RENDERING
+N_importance : 0 #64
+N_samples : 64
+inv_uniform : True
+white_bkgd : False
+sample_mode : uniform
+center_ratio : 0.8
+feat_loss_scale : 1e1
+
+### CONSOLE AND TENSORBOARD
+n_validation : 1000
+n_tensorboard : 2
+n_checkpoint : 500
+visdom_port : 9000
+
+### evaluation options
+llffhold : 8
