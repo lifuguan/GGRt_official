@@ -214,7 +214,7 @@ we provide `launch.json` formatted for debugging.
         "++num_source_views=5",
         "++render_video=False",
         "++expname=opensource",
-        "++dataset_root_eval=data/waymo/testing"  // 测试集路径
+        "++dataset_root_eval=data/waymo/testing",  // 测试集路径
     ]
 }
 ```
